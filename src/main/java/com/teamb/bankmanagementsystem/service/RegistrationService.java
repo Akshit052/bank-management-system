@@ -20,6 +20,7 @@ public class RegistrationService {
         boolean result = false;
         String phoneNumber = customerDTO.getPhoneNumber();
         String aadharNumber = customerDTO.getAadharNumber();
+        System.out.println(aadharNumber);
         String emailAddress = customerDTO.getEmailAddress();
 
         try {

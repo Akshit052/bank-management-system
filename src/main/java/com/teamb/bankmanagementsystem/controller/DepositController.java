@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepositController {
 
     @Autowired
-    private DepositService depositService;
+    public DepositService depositService;
 
     @PostMapping("/deposit")
     public ResponseEntity<String> depositFunds(@RequestParam("accountNumber") String accountNumber, @RequestParam("amount") Double amount, @RequestParam("description") String description) {
