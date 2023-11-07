@@ -25,14 +25,25 @@ pipeline {
       //          deploy adapters: [tomcatAdapter(credentialsId: 'tomcat-credentials', url: 'http://localhost:8081/manager/text', path: '/bms', war: 'target/BMS_TeamB-0.0.1-SNAPSHOT.war')], contextPath: '/bms'
       //       }
       // }
-      stage('Deploy to Tomcat') {
+      // stage('Deploy to Tomcat') {
+      //    steps {
+      //          script {
+      //             def tomcatAdapters = [
+      //                [$class: 'TomcatAdapter', credentialsId: 'tomcat-credentials', url: 'http://localhost:8081/manager/text', path: '/bms', war: 'target/BMS_TeamB-0.0.1-SNAPSHOT.war']
+      //             ]
+      //             deploy adapters: tomcatAdapters
+      //          }
+      //    }
+      // }
+      stage('Run SonarQube Analysis') {
          steps {
-               script {
-                  def tomcatAdapters = [
-                     [$class: 'TomcatAdapter', credentialsId: 'tomcat-credentials', url: 'http://localhost:8081/manager/text', path: '/bms', war: 'target/BMS_TeamB-0.0.1-SNAPSHOT.war']
-                  ]
-                  deploy adapters: tomcatAdapters
+            script {
+               // Defining SonarQube scanner configuration
+               def scannerHome = tool 'SonarQube'; // Assuming SonarQube is configured in Jenkins as a tool named 'SonarQube'
+               withSonarQubeEnv('SonarQube') {
+                  sh "${scannerHome}/bin/sonar-scanner"
                }
+            }
          }
       }
    }
