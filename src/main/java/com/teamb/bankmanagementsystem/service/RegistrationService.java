@@ -20,7 +20,6 @@ public class RegistrationService {
         boolean result = false;
         String phoneNumber = customerDTO.getPhoneNumber();
         String aadharNumber = customerDTO.getAadharNumber();
-        System.out.println(aadharNumber);
         String emailAddress = customerDTO.getEmailAddress();
 
         try {
@@ -57,7 +56,7 @@ public class RegistrationService {
                 customer.setEmailAddress(customerDTO.getEmailAddress());
                 customer.setPassword(customerDTO.getPassword());
                 customer.setIfscCode(ifscCode);
-                customer.setAccountBalance(0.0);
+                customer.setAccountBalance(accountBalance_initial);
                 customer.setAddress(customerDTO.getAddress());
                 customerRepository.save(customer);
                 result = true;
@@ -67,8 +66,8 @@ public class RegistrationService {
             System.out.println("Exception : " + e.getMessage());
         }
         return result;
+
+
     }
-
-
 }
 
