@@ -13,5 +13,11 @@ pipeline {
             sh 'mvn clean package'
          }
       }
+      stage('Run Unit Tests') {
+         steps {
+               // Run unit tests and publish the results
+               sh 'mvn test'
+         }
+      }
    }
 }
