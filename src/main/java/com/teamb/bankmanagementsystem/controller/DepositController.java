@@ -15,9 +15,9 @@ public class DepositController {
     private DepositService depositService;
 
     @PostMapping("/deposit")
-    public ResponseEntity<String> depositFunds(@RequestParam("customerID") String customerID, @RequestParam("amount") Double amount, @RequestParam("description") String description) {
+    public ResponseEntity<String> depositFunds(@RequestParam("accountNumber") String accountNumber, @RequestParam("amount") Double amount, @RequestParam("description") String description) {
 
-        boolean isSuccess = depositService.depositMoney(customerID,amount, description);
+        boolean isSuccess = depositService.depositMoney(accountNumber,amount, description);
 
         if (isSuccess) {
             String message = "Amount Deposited Successfully";
