@@ -1,6 +1,8 @@
 package com.teamb.bankmanagementsystem.model;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Transactions")
@@ -14,7 +16,7 @@ public class Transaction {
     private String beneficiaryAccount;
     private String narration;
     private String dbcrType;
-    private String transactionDate;
+    private Timestamp transactionDate;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -39,7 +41,7 @@ public class Transaction {
     public String getNarration() {
         return narration;
     }
-    public String getTransactionDate() {
+    public Timestamp getTransactionDate() {
         return transactionDate;
     }
     public void setTransactionId(int transactionId) {
@@ -66,7 +68,7 @@ public class Transaction {
     public void setNarration(String narration) {
         this.narration = narration;
     }
-    public void setTransactionDate(String transactionDate) {
+    public void setTransactionDate(Timestamp transactionDate) {
         this.transactionDate = transactionDate;
     }
 
