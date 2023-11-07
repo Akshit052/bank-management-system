@@ -1,6 +1,7 @@
 package com.teamb.bankmanagementsystem.controller;
 
 
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerDetailsException;
 import com.teamb.bankmanagementsystem.model.*;
 import com.teamb.bankmanagementsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,16 @@ public class RegistrationController {
         }
         else {
             System.out.println("customer not created");
-            return new ResponseEntity<>("Customer not created", HttpStatus.BAD_REQUEST);
+            if (!customerDTO.getPhoneNumber().matches("^\\d{10}$"))
+                throw new InvalidCustomerDetailsException("Invalid Phone number");
+
+            else if (!customerDTO.getAadharNumber().matches("^\\d{12}$"))
+                throw new InvalidCustomerDetailsException("Invalid Aadhar number");
+
+            else if (!customerDTO.getEmailAddress().matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"))
+                throw new InvalidCustomerDetailsException("Invalid Email Address");
         }
-
-
+        return new ResponseEntity<>("error",HttpStatus.BAD_REQUEST);
     }
 
 

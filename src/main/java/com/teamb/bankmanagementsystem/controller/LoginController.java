@@ -1,6 +1,7 @@
 package com.teamb.bankmanagementsystem.controller;
 
 
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerCredentialsException;
 import com.teamb.bankmanagementsystem.model.*;
 import com.teamb.bankmanagementsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class LoginController {
         }
         else {
             System.out.println("customer not found");
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            throw new InvalidCustomerCredentialsException();
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 }
