@@ -35,6 +35,9 @@ public class TransferService {
             return false;
         }
         try{
+            if (amount > currentUser.getAccountBalance()) {
+                throw new InvalidAmountException("Not Sufficient Balance");
+            }
             if(amount<0){
                 throw new InvalidAmountException("Amount cannot be negative");
             }

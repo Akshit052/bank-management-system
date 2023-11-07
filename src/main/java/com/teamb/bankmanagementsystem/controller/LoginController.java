@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    LoginService loginService; // Inject your LoginService here
+    LoginService loginService;
     @GetMapping("/login")
     public ResponseEntity<Customer> login(@RequestParam("customerId") String customerId, @RequestParam("password") String password){
         System.out.println("ID = " + customerId + " and psswd = " + password);
@@ -26,7 +26,6 @@ public class LoginController {
             System.out.println("customer not found");
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-//        return customer;
     }
 }
 
