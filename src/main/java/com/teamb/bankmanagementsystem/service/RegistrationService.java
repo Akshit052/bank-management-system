@@ -3,8 +3,7 @@ package com.teamb.bankmanagementsystem.service;
 import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerDetailsException;
 import com.teamb.bankmanagementsystem.model.Customer;
 import com.teamb.bankmanagementsystem.model.CustomerDetails;
-import com.teamb.bankmanagementsystem.repository.LoginRepository;
-import com.teamb.bankmanagementsystem.repository.RegistrationRepository;
+import com.teamb.bankmanagementsystem.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,8 @@ import java.util.Random;
 public class RegistrationService {
 
     @Autowired
-    RegistrationRepository registrationRepository;
+    CustomerRepository customerRepository;
+
 
     public boolean createCustomer(CustomerDetails customerDTO) {
         boolean result = false;
@@ -58,7 +58,7 @@ public class RegistrationService {
                 customer.setIfscCode(ifscCode);
                 customer.setAccountBalance(0.0);
                 customer.setAddress(customerDTO.getAddress());
-                registrationRepository.save(customer);
+                customerRepository.save(customer);
                 result = true;
 
             }

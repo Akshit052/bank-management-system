@@ -4,5 +4,7 @@ import com.teamb.bankmanagementsystem.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepository extends JpaRepository<Customer,String> {
-    Customer findByAccountNumber(String customerID);
+    Customer findByCustomerID(String customerID);
+    Customer findByCustomerIDAndPassword(String customerId, String password);
+    Customer findByAccountNumber(String accountNumber);
 }

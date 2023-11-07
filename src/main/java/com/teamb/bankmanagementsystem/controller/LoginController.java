@@ -14,7 +14,7 @@ public class LoginController {
 
     @Autowired
     LoginService loginService; // Inject your LoginService here
-    @PostMapping("/login")
+    @GetMapping("/login")
     public ResponseEntity<Customer> login(@RequestParam("customerId") String customerId, @RequestParam("password") String password){
         System.out.println("ID = " + customerId + " and psswd = " + password);
         Customer customer = loginService.authenticateCustomer(customerId, password);

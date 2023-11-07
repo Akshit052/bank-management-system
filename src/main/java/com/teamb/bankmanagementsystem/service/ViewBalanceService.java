@@ -3,17 +3,17 @@ package com.teamb.bankmanagementsystem.service;
 import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerDetailsException;
 import com.teamb.bankmanagementsystem.model.Customer;
 import com.teamb.bankmanagementsystem.model.CustomerView;
-import com.teamb.bankmanagementsystem.repository.ViewBalanceRepository;
+import com.teamb.bankmanagementsystem.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ViewBalanceService {
     @Autowired
-    ViewBalanceRepository viewBalanceRepository;
+    CustomerRepository customerRepository;
 
     public CustomerView getCustomerDetails(String accountNumber) {
-        Customer customer = viewBalanceRepository.findByAccountNumber(accountNumber);
+        Customer customer = customerRepository.findByAccountNumber(accountNumber);
         if (customer != null) {
             CustomerView customerView = new CustomerView();
             customerView.setCustomerID(customer.getCustomerID());

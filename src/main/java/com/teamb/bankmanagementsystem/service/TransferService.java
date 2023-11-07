@@ -10,45 +10,46 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class DepositService {
+public class TransferService {
 
-//    @Autowired
-//    DepositRepository depositRepository;
     @Autowired
     CustomerRepository customerRepository;
     @Autowired
     TransactionService transactionService;
-//    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     @Transactional
-    public boolean depositMoney(String accountNumber,Double amount, String description) {
+    public boolean transferMoney(String accountNumber,String beneficiaryAccount, Double amount, String description) {
         boolean result = false;
         Customer currentUser = null;
+        Customer beneficiaryUser = null;
+
         currentUser = customerRepository.findByAccountNumber(accountNumber);
-//        if (authentication != null) {
-//            if (authentication.getPrincipal() instanceof Customer) {
-//                currentUser = (Customer) authentication.getPrincipal();
-//                // Now you have access to the currentUser object
-//            }
-//        }
+        beneficiaryUser = customerRepository.findByAccountNumber(beneficiaryAccount);
+
         if(currentUser==null){
             System.out.println("Customer not logged in !!!");
+            return false;
+        }
+        if(beneficiaryUser==null){
+            System.out.println("Beneficiary does not exist !!!");
             return false;
         }
         try{
             if(amount<0){
                 throw new InvalidAmountException("Amount cannot be negative");
             }
-            currentUser.setAccountBalance(currentUser.getAccountBalance()+amount);
+            currentUser.setAccountBalance(currentUser.getAccountBalance()-amount);
+            beneficiaryUser.setAccountBalance(beneficiaryUser.getAccountBalance()+amount);
             customerRepository.save(currentUser);
+            customerRepository.save(beneficiaryUser);
             result=true;
         }
         catch (InvalidAmountException e){
             System.out.println("Exception : "+ e.getMessage());
             return false;
         }
-//        createTransaction(accountNumber, "Funds Added", amount, "-", description, "Credit");
-        transactionService.createTransaction(currentUser,"Funds Added",amount,"SELF",description,"Credit");
+        transactionService.createTransaction(currentUser,"Funds Transferred",amount,beneficiaryAccount,description,"Debit");
+        transactionService.createTransaction(beneficiaryUser,"Funds Transferred",amount,"SELF",description,"Credit");
         return result;
     }
 }
