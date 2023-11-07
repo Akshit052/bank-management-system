@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    LoginService loginService;
+    public LoginService loginService;
     @GetMapping("/login")
     public ResponseEntity<Customer> login(@RequestParam("customerId") String customerId, @RequestParam("password") String password){
         System.out.println("ID = " + customerId + " and psswd = " + password);
