@@ -29,7 +29,7 @@ pipeline {
          steps {
                script {
                   def tomcatAdapters = [
-                     [$class: 'Tomcat7Adapter', credentialsId: 'tomcat-credentials', url: 'http://localhost:8081/manager/text', path: '/bms', war: 'target/BMS_TeamB-0.0.1-SNAPSHOT.war']
+                     [$class: 'TomcatAdapter', credentialsId: 'tomcat-credentials', url: 'http://localhost:8081/manager/text', path: '/bms', war: 'target/BMS_TeamB-0.0.1-SNAPSHOT.war']
                   ]
                   deploy adapters: tomcatAdapters
                }
