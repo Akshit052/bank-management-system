@@ -22,10 +22,10 @@ public class DepositService {
 //    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     @Transactional
-    public boolean depositMoney(String customerID,Double amount, String description) {
+    public boolean depositMoney(String accountNumber,Double amount, String description) {
         boolean result = false;
         Customer currentUser = null;
-        currentUser = customerRepository.findByCustomerID(customerID);
+        currentUser = customerRepository.findByAccountNumber(accountNumber);
 //        if (authentication != null) {
 //            if (authentication.getPrincipal() instanceof Customer) {
 //                currentUser = (Customer) authentication.getPrincipal();
