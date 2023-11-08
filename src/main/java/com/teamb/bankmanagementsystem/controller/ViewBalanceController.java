@@ -1,5 +1,6 @@
 package com.teamb.bankmanagementsystem.controller;
 
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerDetailsException;
 import com.teamb.bankmanagementsystem.model.Customer;
 import com.teamb.bankmanagementsystem.model.CustomerView;
 import com.teamb.bankmanagementsystem.service.ViewBalanceService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customer/login")
 public class ViewBalanceController {
     @Autowired
     ViewBalanceService viewBalanceService;
@@ -24,7 +25,8 @@ public class ViewBalanceController {
             return new ResponseEntity<>(customer, HttpStatus.OK);
         } else {
             System.out.println("Account Number not found");
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            throw new InvalidCustomerDetailsException("Customer with account number " + accountNumber + " not found");
+
         }
     }
 }
