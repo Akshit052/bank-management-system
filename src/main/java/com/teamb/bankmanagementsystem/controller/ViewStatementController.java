@@ -19,7 +19,7 @@ public class ViewStatementController {
 
     @PostMapping("/viewstatement")
     public ResponseEntity<List<Transaction>> viewStatement(@RequestParam("accountNumber") String accountNumber) {
-        if (viewStatementService.getStatement(accountNumber) != null) {
+        if (!viewStatementService.getStatement(accountNumber).isEmpty()) {
             return new ResponseEntity<>(viewStatementService.getStatement(accountNumber), HttpStatus.OK);
         } else {
             System.out.println("User does not have any transactions.");

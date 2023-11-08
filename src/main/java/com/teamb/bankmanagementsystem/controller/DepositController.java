@@ -1,5 +1,6 @@
 package com.teamb.bankmanagementsystem.controller;
 
+import com.teamb.bankmanagementsystem.exceptions.InvalidAmountException;
 import com.teamb.bankmanagementsystem.service.DepositService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class DepositController {
         } else {
             String message = "Failed to deposit the amount";
             System.out.println(message);
-            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+            throw new InvalidAmountException("Amount cannot be negative");
         }
     }
 
