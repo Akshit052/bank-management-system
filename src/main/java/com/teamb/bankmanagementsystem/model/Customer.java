@@ -52,6 +52,11 @@ public class Customer {
 
     }
 
+    public Customer(String customerID, String password) {
+        this.customerID = customerID;
+        this.password = password;
+    }
+
 
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
