@@ -30,7 +30,7 @@ public class DepositTest {
     }
     @Test(expected = InvalidAmountException.class)
     public void testDepositFailure(){
-        Customer customer = customerRepository.findByFirstNameAndLastName("Admin","User").iterator().next();
+        Customer customer = customerRepository.findAll().get(0);
         ResponseEntity<String> responseEntity = depositController.depositFunds(customer.getAccountNumber(),-200.0,"deposit 200");
 //        assertEquals(responseEntity.getStatusCode(), HttpStatus.BAD_REQUEST);
     }

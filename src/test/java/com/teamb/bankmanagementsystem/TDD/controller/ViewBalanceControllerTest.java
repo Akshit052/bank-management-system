@@ -1,10 +1,11 @@
 package com.teamb.bankmanagementsystem.TDD.controller;
 
 import com.teamb.bankmanagementsystem.controller.ViewBalanceController;
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerDetailsException;
 import com.teamb.bankmanagementsystem.model.CustomerView;
 import com.teamb.bankmanagementsystem.service.ViewBalanceService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -22,13 +23,13 @@ public class ViewBalanceControllerTest {
     @InjectMocks
     private ViewBalanceController viewBalanceController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testViewCustomerDetails_Success() {
+    public void testViewCustomerDetails_Success() {
         // Arrange
         String accountNumber = "123456";
         CustomerView customerView = new CustomerView();
@@ -43,8 +44,8 @@ public class ViewBalanceControllerTest {
         assertEquals(customerView, response.getBody());
     }
 
-    @Test
-    void testViewCustomerDetails_NotFound() {
+    @Test(expected = InvalidCustomerDetailsException.class)
+    public void testViewCustomerDetails_NotFound() {
         // Arrange
         String accountNumber = "654321";
         Mockito.when(viewBalanceService.getCustomerDetails(accountNumber)).thenReturn(null);

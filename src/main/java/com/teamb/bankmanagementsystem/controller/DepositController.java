@@ -30,5 +30,4 @@ public class DepositController {
             throw new InvalidAmountException("Amount cannot be negative");
         }
     }
-
 }

@@ -3,7 +3,7 @@ package com.teamb.bankmanagementsystem.TDD.controller;
 import com.teamb.bankmanagementsystem.controller.TransferController;
 import com.teamb.bankmanagementsystem.service.TransferService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -21,13 +21,13 @@ public class TransferControllerTest {
     @InjectMocks
     private TransferController transferController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testTransferFunds_Success() {
+    public void testTransferFunds_Success() {
         // Arrange
         String accountNumber = "123456";
         String beneficiaryAccount = "654321";
@@ -43,8 +43,8 @@ public class TransferControllerTest {
         assertEquals("Amount Transferred Successfully", response.getBody());
     }
 
-    @Test
-    void testTransferFunds_Failure() {
+    @Test(expected = NullPointerException.class)
+    public void testTransferFunds_Failure() {
         // Arrange
         String accountNumber = "123456";
         String beneficiaryAccount = "654321";

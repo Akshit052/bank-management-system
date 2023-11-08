@@ -1,9 +1,11 @@
 package com.teamb.bankmanagementsystem.TDD.controller;
 
 import com.teamb.bankmanagementsystem.controller.DepositController;
+import com.teamb.bankmanagementsystem.exceptions.InvalidAmountException;
 import com.teamb.bankmanagementsystem.service.DepositService;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -19,15 +21,15 @@ public class DepositControllerTest {
 
     private DepositController depositController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         depositController = new DepositController();
         depositController.depositService = depositService;
     }
 
     @Test
-    void testDepositFunds_Success() {
+    public void testDepositFunds_Success() {
         // Arrange
         String accountNumber = "12345";
         Double amount = 100.0;
@@ -42,8 +44,8 @@ public class DepositControllerTest {
         assertEquals("Amount Deposited Successfully", response.getBody());
     }
 
-    @Test
-    void testDepositFunds_Failure() {
+    @Test(expected = InvalidAmountException.class)
+    public void testDepositFunds_Failure() {
         // Arrange
         String accountNumber = "12345";
         Double amount = -50.0; // Simulate a failure scenario

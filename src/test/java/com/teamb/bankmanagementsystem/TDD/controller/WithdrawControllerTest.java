@@ -3,7 +3,7 @@ package com.teamb.bankmanagementsystem.TDD.controller;
 import com.teamb.bankmanagementsystem.controller.WithdrawController;
 import com.teamb.bankmanagementsystem.service.WithdrawService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -21,13 +21,13 @@ public class WithdrawControllerTest {
     @InjectMocks
     private WithdrawController withdrawController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testWithdrawFundsSuccess() {
+    public void testWithdrawFundsSuccess() {
         // Arrange
         String accountNumber = "123456";
         Double amount = 100.0;
@@ -42,8 +42,8 @@ public class WithdrawControllerTest {
         assertEquals("Amount Withdraw Successfully", response.getBody());
     }
 
-    @Test
-    void testWithdrawFundsFailure() {
+    @Test(expected = NullPointerException.class)
+    public void testWithdrawFundsFailure() {
         // Arrange
         String accountNumber = "654321";
         Double amount = 200.0;

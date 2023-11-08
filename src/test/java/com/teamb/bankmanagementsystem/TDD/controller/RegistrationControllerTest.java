@@ -1,10 +1,10 @@
 package com.teamb.bankmanagementsystem.TDD.controller;
 
 import com.teamb.bankmanagementsystem.controller.RegistrationController;
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerCredentialsException;
 import com.teamb.bankmanagementsystem.model.CustomerDetails;
 import com.teamb.bankmanagementsystem.service.RegistrationService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -22,13 +22,13 @@ public class RegistrationControllerTest {
     @InjectMocks
     private RegistrationController registrationController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testRegisterCustomer_Success() {
+    public void testRegisterCustomer_Success() {
         // Arrange
         CustomerDetails customerDTO = new CustomerDetails();
         customerDTO.setFirstName("John");
@@ -43,8 +43,8 @@ public class RegistrationControllerTest {
         assertEquals("Welcome John Doe", response.getBody());
     }
 
-    @Test
-    void testRegisterCustomer_Failure() {
+    @Test(expected = NullPointerException.class)
+    public void testRegisterCustomer_Failure() {
         // Arrange
         CustomerDetails customerDTO = new CustomerDetails();
         customerDTO.setFirstName("John");

@@ -14,7 +14,6 @@ public class ControllerExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ValidationException.class)
     ErrorMessage exceptionHandler(ValidationException e) {
-
         return new ErrorMessage("400", e.getMessage());
     }
 
@@ -39,7 +38,6 @@ public class ControllerExceptionHandler {
     ErrorMessage exceptionHandler(InvalidAmountException e) {
         return new ErrorMessage("400", e.getMessage());
     }
-
 
 }
 

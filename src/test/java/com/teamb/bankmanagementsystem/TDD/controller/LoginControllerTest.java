@@ -1,10 +1,12 @@
 package com.teamb.bankmanagementsystem.TDD.controller;
 
 import com.teamb.bankmanagementsystem.controller.LoginController;
+import com.teamb.bankmanagementsystem.exceptions.InvalidCustomerCredentialsException;
 import com.teamb.bankmanagementsystem.model.Customer;
 import com.teamb.bankmanagementsystem.service.LoginService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Before;
+//import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -20,15 +22,15 @@ public class LoginControllerTest {
 
     private LoginController loginController;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         loginController = new LoginController();
         loginController.loginService = loginService;
     }
 
     @Test
-    void testLogin_Success() {
+    public void testLogin_Success() {
         // Arrange
         String customerId = "testUser";
         String password = "testPassword";
@@ -43,8 +45,8 @@ public class LoginControllerTest {
         assertEquals(customer, response.getBody());
     }
 
-    @Test
-    void testLogin_Failure() {
+    @Test(expected = InvalidCustomerCredentialsException.class)
+    public void testLogin_Failure() {
         // Arrange
         String customerId = "nonExistentUser";
         String password = "invalidPassword";
