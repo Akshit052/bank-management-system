@@ -25,6 +25,13 @@ pipeline {
             sh 'mvn clean package'
          }
       }
+      stage('SonarQube analysis') {
+         steps{
+            withSonarQubeEnv('sonarqube-8.9.2') {
+               sh "mvn sonar:sonar"
+            }
+         }
+      }
       // stage('Performance Test') {
       //    steps {
       //          script {
