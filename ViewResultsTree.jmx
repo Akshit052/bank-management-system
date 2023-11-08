@@ -174,7 +174,7 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">customerId</stringProp>
-                  <stringProp name="Argument.value">CS6324101</stringProp>
+                  <stringProp name="Argument.value">CS1</stringProp>
                 </elementProp>
                 <elementProp name="password" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -221,7 +221,7 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">accountNumber</stringProp>
-                  <stringProp name="Argument.value">AC2480780</stringProp>
+                  <stringProp name="Argument.value">AC1</stringProp>
                 </elementProp>
                 <elementProp name="amount" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -276,7 +276,7 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">accountNumber</stringProp>
-                  <stringProp name="Argument.value">AC2480780</stringProp>
+                  <stringProp name="Argument.value">AC1</stringProp>
                 </elementProp>
                 <elementProp name="amount" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
